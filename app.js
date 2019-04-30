@@ -4,7 +4,7 @@ document.getElementById('loan-form').addEventListener('submit', calculateResults
 
 //Calculate Results
 function calculateResults(e){
-    console.log('Calculating');
+    console.log('Calculating...');
     // Now we want to grab all the stuff from the UI we need
     const amount = document.getElementById('amount');
     const interest = document.getElementById('interest');
@@ -55,5 +55,14 @@ function showError(error){
 
     //Insert error above heading, so we do that by taking the parent which is the 'card' 
     card.insertBefore(errorDiv, heading);
+
+    //Clear error after 3 seconds, we use the setTimeout javascript function which takes 2 parameters, the first one is a function and the seconds one the time in miliseconds 
+    setTimeout(clearError, 3000);
 }
 
+
+//Clear error
+function clearError(){
+    //we want to grab the element with the class alert and remove it
+    document.querySelector('.alert').remove();
+}
