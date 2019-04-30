@@ -1,6 +1,18 @@
 //Listen for submit button
-//So first we get the id and add a event listener and listen for submit, and call the function calculateResults
-document.getElementById('loan-form').addEventListener('submit', calculateResults);
+//So first we get the id and add a event listener and listen for submit, and call a function where we want to delay the calculateResults function
+document.getElementById('loan-form').addEventListener('submit', function(e){
+    //We want to hide the results at start
+    document.getElementById('results').style.display = 'none';
+
+    //We want to show the loader when submit is clicked
+    document.getElementById('loading').style.display = 'block';
+
+    //Then we want to show the loader for 2 seconds and then give the results
+    setTimeout(calculateResults, 2000);
+
+    //since it is a form submit we want to prevent default behavior
+    e.preventDefault();
+});
 
 //Calculate Results
 function calculateResults(e){
@@ -30,16 +42,26 @@ function calculateResults(e){
         monthlyPayment.value = monthly.toFixed(2);
         totalPayment.value = (monthly * calculatedPayments).toFixed(2);
         totalInterest.value = ((monthly * calculatedPayments)-principal).toFixed(2);
+
+        //Show results after 2 seconds
+        document.getElementById('results').style.display = 'block';
+
+        //Hide the loader after 2 seconds
+        document.getElementById('loading').style.display = 'none';
     } else {
         //So if they put something in that isn't right (isn't Finite) we want to give a error that something went wrong we do this with the showError function:
         showError('Please check your numbers');
     }
-    //since it is a form submit we want to prevent default behavior
-    e.preventDefault();
 }
 
 //Show error
 function showError(error){
+    //Hide results
+    document.getElementById('results').style.display = 'none';
+
+    //Hide loader
+    document.getElementById('loading').style.display = 'none';
+
     //Create a div
     const errorDiv = document.createElement('div');
 
