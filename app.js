@@ -3,7 +3,7 @@
 document.getElementById('loan-form').addEventListener('submit', calculateResults);
 
 //Calculate Results
-function calculateResults(e) {
+function calculateResults(e){
     console.log('Calculating');
     // Now we want to grab all the stuff from the UI we need
     const amount = document.getElementById('amount');
@@ -31,12 +31,29 @@ function calculateResults(e) {
         totalPayment.value = (monthly * calculatedPayments).toFixed(2);
         totalInterest.value = ((monthly * calculatedPayments)-principal).toFixed(2);
     } else {
-        //So if they put something in that isn't right isn't Finite we want to give feedback something went wrong
-        console.log('Please Check your numbers');
-
+        //So if they put something in that isn't right (isn't Finite) we want to give a error that something went wrong we do this with the showError function:
+        showError('Please check your numbers');
     }
-
     //since it is a form submit we want to prevent default behavior
     e.preventDefault();
+}
+
+//Show error
+function showError(error){
+    //Create a div
+    const errorDiv = document.createElement('div');
+
+    //Get Elements from the DOM
+    const card = document.querySelector('.card');
+    const heading = document.querySelector('.heading');
+
+    // Add class (with bootstrap you also want to give an alert the class alert-danger)
+    errorDiv.className = 'alert alert-danger';
+
+    //Create text node and append to div
+    errorDiv.appendChild(document.createTextNode(error));
+
+    //Insert error above heading, so we do that by taking the parent which is the 'card' 
+    card.insertBefore(errorDiv, heading);
 }
 
