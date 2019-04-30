@@ -1,23 +1,101 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
     <title>Loan Calculator</title>
-  </head>
-  <!-- bg-dark is a bootstrap class -->
-  <body class="bg-dark"> 
-    
+</head>
+<!-- bg-dark is a bootstrap class -->
+
+<body class="bg-dark">
+    <!-- container class will have auto margin -->
+    <div class="container">
+        <!-- in the middle we are going to use a grid system -->
+        <div class="row">
+            <!-- Inside the row we want a 6 column div, the mx-auto class is gonna push it in the middle -->
+            <div class="col-md-6 mx-auto">
+                <!-- Inside here we are going to create a card class, with the text in the center, and a margin of 5 from the top -->
+                <div class="card card-body text-center mt-5">
+                    <!-- Then we create a h1 heading, display-5 is a bootstrap class for a specific size and pb-3 = padding bottom-->
+                    <h1 class="heading display-5 pb-3">Loan Calculator</h1>
+                    <!-- now we are going to create our form -->
+                    <form id="loan-form">
+                        <!-- inside the form we are going to have a couple form-groups -->
+                        <div class="form-group">
+                            <!-- and labels wrapped in a form group div, we are going to use a input type because we want to use a money sign to the left of the actual input -->
+                            <div class="input-group">
+                                <!-- inside here we gonna have a span with the class input-group-addon for the money sign -->
+                                <span class="input-group-addon">€</span>
+                                <!-- then we create a input type with the bootstrap class form-control which gives it some styling and makes it a block level element and with an id so we can grab it with our javascript -->
+                                <input type="number" class="form-control" id="amount" placeholder="Loan Amount">
+                            </div>
+                        </div>
+                        <!-- paste the whole form group from above -->
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">%</span>
+                                <input type="number" class="form-control" id="interest" placeholder="Interest">
+                            </div>
+                        </div>
+                        <!-- Then we want the years, but its not going to to be a input-group -->
+                        <div class="form-group">
+                            <input type="number" class="form-control" id="years" placeholder="Years To Repay">
+                        </div>
+                        <!-- Then we want the submit button -->
+                        <div class="form-group">
+                            <!-- we give this the bootstrap class of btn, btn-block to make it the complete width -->
+                            <input type="submit" value="Calculate" class="btn btn-dark btn-block">
+                        </div>
+                    </form>
+                    <!-- LOADER -->
+                    <!-- <div id="loading">
+                        <img src="img/loading.gif" alt="Loading">
+                    </div> -->
+                    <!-- RESULTS -->
+                    <div id="results" class="pt-4">
+                        <!-- pt-4 = padding top -->
+                        <h5>Results</h5>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">Monthly Payment</span>
+                                <input type="number" class="form-control" id="monthly-payment" disabled>
+                                <!--Disabled will make it not possible to put anything in the input field -->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">Total Payment</span>
+                                <input type="number" class="form-control" id="total-payment" disabled>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">Total Interest</span>
+                                <input type="number" class="form-control" id="total-interest" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+    <script src="app.js"></script>
+</body>
+
 </html>
